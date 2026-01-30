@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 # --- Data Formatting Functions ---
 
-def create_interpolated_heatmap(interpolated_data, heatmap_name, metric_name, from_date_time, to_date_time, clustered, step_size, epsg_projection, file_flag):
+def create_interpolated_heatmap(interpolated_data, heatmap_name, metric_name, from_date_time, to_date_time, clustered, step_size, epsg_projection, file_flag, model_method):
     """
     Formats the interpolated grid results into a specific JSON structure required by the Snap4City backend.
     
@@ -28,7 +28,7 @@ def create_interpolated_heatmap(interpolated_data, heatmap_name, metric_name, fr
         step_size (float): The cell size of the grid.
         epsg_projection (int): EPSG code for coordinate projection.
         file_flag (int): Flag indicating if output is a file.
-
+        model_method (str): The method used for the model (e.g., interpolation technique).
     Returns:
         dict: A dictionary containing a list of 'attributes' formatted for API ingestion.
     """
@@ -39,7 +39,7 @@ def create_interpolated_heatmap(interpolated_data, heatmap_name, metric_name, fr
             'id': i,
             'mapName': heatmap_name,
             'metricName': metric_name,
-            'description': f"Average from {from_date_time} to {to_date_time}",
+            'description': f"Average from {from_date_time} to {to_date_time} - Method: {model_method}",
             'clustered': clustered,
             'latitude': row['X'],  # UTM Easting
             'longitude': row['Y'], # UTM Northing
