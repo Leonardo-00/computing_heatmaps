@@ -220,7 +220,7 @@ def generate_heatmap(params: dict):
     
     interpolated_heatmap = create_interpolated_heatmap(
         interpolated_df, heatmap_name, metric_name, from_date_time, to_date_time, 
-        clustered, step_size, epsg_projection, file_flag
+        clustered, step_size, epsg_projection, file_flag, model_method
     )
     
     logger.debug("--------- INTERPOLATED DATA LIST CREATION - END ---------")
